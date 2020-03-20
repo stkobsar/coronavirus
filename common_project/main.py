@@ -13,6 +13,7 @@ def parse_args(parser):
 
 
 if __name__ == "__main__":
+
     #############ARGPARSE########
     parser = argparse.ArgumentParser(description='software to scrap data from the web. It has two principal features: coronavirus data and spanish words data scraping')
     parse_args(parser)
@@ -25,7 +26,7 @@ if __name__ == "__main__":
         mn.analyse_words_polysemy(plot_yes=args.plot_yes, average_yes=args.average_yes)
 
     if args.coronavirus:
-        mnc.coronavirus_data(args.country)
+        mnc.coronavirus_data(args.country, args.column, args.countries)
 
 
 
