@@ -12,8 +12,8 @@ Data analysis of the coronavirus evolution in different countries
 
 ## Plot one country evolution of coronavirus
 
-    python coronavirus/main.py --country spain
+    python coronavirus/main.py --country "South Africa"
     
 ## Plot several countries evolution of coronavirus
 
-    python coronavirus/main.py --coronavirus --countries spain italy china
+    python coronavirus/main.py --countries "spain" "italy" "South Korea"
