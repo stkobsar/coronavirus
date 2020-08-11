@@ -3,6 +3,14 @@ import pandas as pd
 import coronavirus.custom_errors as ce
 
 def pl_country_cases(country, csv, field="total_cases", savefig=True):
+    """
+    Description: Plot country cases by days since pandemic started
+    :param country: country entered by the user
+    :param csv: csv with the data
+    :param field: the field in dataset
+    :param savefig: Save plot created trough data
+    :return: output plot
+    """
     df_coronavirus = pd.read_csv(csv)
     paises = df_coronavirus["location"].unique()
 
