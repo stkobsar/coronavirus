@@ -6,11 +6,9 @@ import coronavirus.total_cases as tot
 (os.path.abspath(__file__))#funcion de os para usar el path absoluto. Sirve para que la fila funcione en todos sitios.
 ROOT_FOLDER = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))#os.path.dirname sirve para ir un dir hacia atras. Se pone 3 veces para ir 3 para atrás.
 print(ROOT_FOLDER)
-#CSV = os.path.join(ROOT_FOLDER, "data/full_data.csv")
 
 ID = "full_data.csv"
 CSV = "https://covid.ourworldindata.org/data/ecdc/{0}".format(ID)
-
 
 
 def coronavirus_data(country, field, countries):
