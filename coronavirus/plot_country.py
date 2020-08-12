@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import coronavirus.custom_errors as ce
 
-def pl_country_cases(country, csv, field="total_cases", savefig=True):
+def pl_country_cases(country, csv, field, savefig=True):
     """
     Description: Plot country cases by days since pandemic started
     :param country: country entered by the user
@@ -16,6 +16,9 @@ def pl_country_cases(country, csv, field="total_cases", savefig=True):
     df_filtered = df_coronavirus[condition]
 
     list_of_countries = df_coronavirus["location"].unique()
+    list_of_colnames = []
+    for col_name in df_filtered.columns:
+        list_of_colnames.append(col_name)
 
     if df_filtered.empty:
         similar_country = ce.similar_name_country(country, list_of_countries)
@@ -27,13 +30,24 @@ def pl_country_cases(country, csv, field="total_cases", savefig=True):
 
     ### Plot ###
 
-    plt.scatter(list_dates, list_cases)
-    plt.xlabel("Days since covid started")
-    plt.ylabel("COVID official cases")
-    plt.title("Analysis of coronavirus data in a single country")
+    curr_date = str(pd.to_datetime('today').date())
+    curr_date_custom = curr_date.replace('-', '')
+    field_custom = field.replace('_', '')
+    field_title = field.replace('_', ' ')
 
-    curr_date = pd.to_datetime('today').date()
-    output = f"cases_{curr_date}_{country}.png"
+    plt.scatter(list_dates, list_cases)
+    plt.legend(country)
+    plt.xlabel("Days since COVID-19 start spreading")
+    plt.ylabel(f"COVID-19 official cases of {field_title}")
+    plt.title(f"COVID-19 data of {field_title} in {country}")
+
+    ############
+
+    curr_date = str(pd.to_datetime('today').date())
+    curr_date_custom = curr_date.replace('-', '')
+    field_custom = field.replace('_', '')
+
+    output = f"{field_custom}_{curr_date_custom}_{country}.png"
 
     if savefig:
         plt.savefig(output)
