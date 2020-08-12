@@ -12,26 +12,29 @@ def pl_country_cases(country, csv, field="total_cases", savefig=True):
     :return: output plot
     """
     df_coronavirus = pd.read_csv(csv)
-    paises = df_coronavirus["location"].unique()
-
-
     condition = df_coronavirus["location"].str.lower() == country.lower() #str.lower() retrieve en minuscula. Esto permite que le usuario pase spain como quiera
     df_filtered = df_coronavirus[condition]
 
+    list_of_countries = df_coronavirus["location"].unique()
+
     if df_filtered.empty:
-        similar_country = ce.similar_name_country(country, paises)
-        raise ce.EmptyDataFrame(f'The name of country is not in the list of countries. Try to one of these {paises}. Did you mean {similar_country}?')
+        similar_country = ce.similar_name_country(country, list_of_countries)
+        raise ce.EmptyDataFrame(f'The name of country is not in the list of countries. Try to one of these {list_of_countries}. Did you mean {similar_country}?')
 
     df_filtered_na = df_filtered.fillna(0)
     list_cases = df_filtered_na[field].values
-    list_date = range(len(list_cases))
-    #list_date = df_filtered_na["date"].values
-    plt.scatter(list_date, list_cases)
+    list_dates = range(len(list_cases))
+
+    ### Plot ###
+
+    plt.scatter(list_dates, list_cases)
     plt.xlabel("Days since covid started")
     plt.ylabel("COVID official cases")
     plt.title("Analysis of coronavirus data in a single country")
 
-    output = f"cases_date_{country}.png"
+    curr_date = pd.to_datetime('today').date()
+    output = f"cases_{curr_date}_{country}.png"
+
     if savefig:
         plt.savefig(output)
     else:
