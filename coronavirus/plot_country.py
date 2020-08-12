@@ -20,6 +20,7 @@ def pl_country_cases(country, csv, field, savefig=True):
     for col_name in df_filtered.columns:
         list_of_colnames.append(col_name)
 
+
     if df_filtered.empty:
         similar_country = ce.similar_name_country(country, list_of_countries)
         raise ce.EmptyDataFrame(f'The name of country is not in the list of countries. Try to one of these {list_of_countries}. Did you mean {similar_country}?')
@@ -36,7 +37,6 @@ def pl_country_cases(country, csv, field, savefig=True):
     field_title = field.replace('_', ' ')
 
     plt.scatter(list_dates, list_cases)
-    plt.legend(country)
     plt.xlabel("Days since COVID-19 start spreading")
     plt.ylabel(f"COVID-19 official cases of {field_title}")
     plt.title(f"COVID-19 data of {field_title} in {country}")
