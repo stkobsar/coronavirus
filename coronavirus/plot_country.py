@@ -27,7 +27,11 @@ def pl_country_cases(country, csv, field="total_cases", savefig=True):
     list_date = range(len(list_cases))
     #list_date = df_filtered_na["date"].values
     plt.scatter(list_date, list_cases)
-    output = "cases_date_{}.png".format(country)
+    plt.xlabel("Days since covid started")
+    plt.ylabel("COVID official cases")
+    plt.title("Analysis of coronavirus data in a single country")
+
+    output = f"cases_date_{country}.png"
     if savefig:
         plt.savefig(output)
     else:
