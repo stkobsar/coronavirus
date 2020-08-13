@@ -5,6 +5,9 @@ from difflib import SequenceMatcher
 class EmptyDataFrame(Exception):
     pass
 
+def similar(a, b):
+    return SequenceMatcher(None, a, b).ratio()
+
 def similar_name_country(country, paises):
     #country es uno de los paises intriducidos por el usuario
     #paises es todos los paises
@@ -19,10 +22,9 @@ def similar_name_country(country, paises):
 
     return country_similar
 
+class FieldError(Exception):
+    pass
 
 
 
-
-def similar(a, b):
-    return SequenceMatcher(None, a, b).ratio()
 
