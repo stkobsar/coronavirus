@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import coronavirus.custom_errors as ce
+import coronavirus.increment_days as id
 
-def pl_country_cases(country, csv, field, savefig=True):
+def pl_country_cases(country, csv, field, savefig=True, incremental=False):
     """
     Description: Plot country cases by days since pandemic started
     :param country: country entered by the user
@@ -26,8 +27,13 @@ def pl_country_cases(country, csv, field, savefig=True):
 
     df_filtered_na = df_filtered.fillna(0)
 
-    list_cases = df_filtered_na[field].values
+    if incremental:
+        list_cases = id.pl_increment_cases(df_filtered_na, field)
+    else:
+        list_cases = df_filtered_na[field].values
+
     list_dates = range(len(list_cases))
+
 
     ### Plot ###
 

@@ -3,13 +3,11 @@ import coronavirus.plot_country as pl
 import matplotlib.pyplot as plt
 
 
-def pl_total_cases(csv, countries_user, field):
+def pl_total_cases(csv, countries_user, field, incremental):
     for country in countries_user:
-        plot_output = pl.pl_country_cases(country, csv, field, savefig=False)
+        plot_output = pl.pl_country_cases(country, csv, field, savefig=False, incremental=incremental)
 
-    plt.legend(countries_user)
-
-
+    #Overwrite previous axis and title name!
     plt.legend(countries_user)
     curr_date = str(pd.to_datetime('today').date())
     curr_date_custom = curr_date.replace('-', '')
