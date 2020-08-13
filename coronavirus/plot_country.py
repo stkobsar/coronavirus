@@ -16,14 +16,22 @@ def pl_country_cases(country, csv, field, savefig=True):
     df_filtered = df_coronavirus[condition]
 
     list_of_countries = df_coronavirus["location"].unique()
-    list_of_colnames = []
+    list_of_fields = []
     for col_name in df_filtered.columns:
-        list_of_colnames.append(col_name)
+        list_of_fields.append(col_name)
+
+
+
+    if field not in list_of_fields:
+        similar_field = ce.similar_name_country(field, list_of_fields)
+        raise ce.FieldError(f'The name of data field is not in the list of field. Try one of these {list_of_fields}. Did you mean {similar_field}?')
+
 
 
     if df_filtered.empty:
         similar_country = ce.similar_name_country(country, list_of_countries)
         raise ce.EmptyDataFrame(f'The name of country is not in the list of countries. Try to one of these {list_of_countries}. Did you mean {similar_country}?')
+
 
     df_filtered_na = df_filtered.fillna(0)
     list_cases = df_filtered_na[field].values
