@@ -1,7 +1,16 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import os
 import coronavirus.custom_errors as ce
-import coronavirus.increment_days as id
+import coronavirus.functionalities.increment_days as id
+
+
+def create_dir_default(date):
+    dir_name = f"{date}_results"
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+
+    return dir_name
 
 def pl_country_cases(country, csv, field, savefig=True, incremental=False):
     """
@@ -55,8 +64,15 @@ def pl_country_cases(country, csv, field, savefig=True, incremental=False):
 
     output = f"{field_custom}_{curr_date_custom}_{country}.png"
 
+    dir = create_dir_default(curr_date_custom)
+    path = os.path.join("../", dir, output)
+    print(path)
+
+
     if savefig:
-        plt.savefig(output)
+
+        plt.savefig(path)
+
     else:
         pass
 
