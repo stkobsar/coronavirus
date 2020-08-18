@@ -16,7 +16,5 @@ Data analysis of the coronavirus evolution in different countries
    
 
 ## Plot one country with the different type of data in the data set (total cases by default)
-
-    python coronavirus/main.py -ct "United States" -fld "new_deaths"
     
     python coronavirus/main.py -cts "Slovakia" "Serbia" "Montenegro" -fld "weekly_cases"
