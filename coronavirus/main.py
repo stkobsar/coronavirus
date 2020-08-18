@@ -12,14 +12,15 @@ ID = "full_data.csv"
 CSV = "https://covid.ourworldindata.org/data/ecdc/{0}".format(ID)
 
 
-def coronavirus_data(field, countries, incremental):
-    plot_total_cases = tot.pl_total_cases(CSV, countries, field=field, incremental=incremental)
+def coronavirus_data(field, countries, incremental, relative):
+    plot_total_cases = tot.pl_total_cases(CSV, countries, field=field, incremental=incremental, relative=relative)
 
 
 def parse_args(parser):
     parser.add_argument('-cts', '--countries', nargs="+", help="List of countries. i.e. --countries spain italy france", default=[])
     parser.add_argument('-fld', '--field', default="total_cases", help="Input column of the csv data to carry out the plot")
     parser.add_argument('-inc', '--incremental', action="store_true", help="Input to carry out a plot of the increment in desired field between days") #action="store_true" manera de poner default false, y si lo pones por cl, pasa a true
+    parser.add_argument('-rel', '--relative', action="store_true", help="Input to carry out a plot of the cases relative to population") #action="store_true" manera de poner default false, y si lo pones por cl, pasa a true
 
 
 if __name__ == "__main__":
@@ -28,5 +29,5 @@ if __name__ == "__main__":
     parse_args(parser)
     args = parser.parse_args()
     ###########
-    coronavirus_data(args.field, args.countries, args.incremental)
+    coronavirus_data(args.field, args.countries, args.incremental, args.relative)
 
