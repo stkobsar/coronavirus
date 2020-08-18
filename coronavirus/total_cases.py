@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 import coronavirus.plot_country as pl
 import matplotlib.pyplot as plt
 
@@ -20,8 +21,14 @@ def pl_total_cases(csv, countries_user, field, incremental):
     plt.ylabel(f"COVID-19 official cases of {field_title}")
     plt.title(f"COVID-19 data of {field_title} in {countries_plot_title}")
 
-
+    dir = create_dir_default(curr_date_custom)
     output = f"{field_custom}_{curr_date_custom}_{countries_user_outputname}.png"
-
-
+    output = os.path.join(dir, output)
     plt.savefig(output)
+
+def create_dir_default(date):
+    dir_name = f"{date}_results"
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+
+    return dir_name

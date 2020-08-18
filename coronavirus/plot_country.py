@@ -5,12 +5,7 @@ import coronavirus.custom_errors as ce
 import coronavirus.functionalities.increment_days as id
 
 
-def create_dir_default(date):
-    dir_name = f"{date}_results"
-    if not os.path.exists(dir_name):
-        os.makedirs(dir_name)
 
-    return dir_name
 
 def pl_country_cases(country, csv, field, savefig=True, incremental=False):
     """
@@ -57,23 +52,3 @@ def pl_country_cases(country, csv, field, savefig=True, incremental=False):
     plt.title(f"COVID-19 data of {field_title} in {country}")
 
     ############
-
-    curr_date = str(pd.to_datetime('today').date())
-    curr_date_custom = curr_date.replace('-', '')
-    field_custom = field.replace('_', '')
-
-    output = f"{field_custom}_{curr_date_custom}_{country}.png"
-
-    dir = create_dir_default(curr_date_custom)
-    path = os.path.join("../", dir, output)
-    print(path)
-
-
-    if savefig:
-
-        plt.savefig(path)
-
-    else:
-        pass
-
-    return output

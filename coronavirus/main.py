@@ -2,7 +2,7 @@ import argparse
 import os
 import coronavirus.plot_country as pl
 import coronavirus.total_cases as tot
-import coronavirus.increment_days as id
+import coronavirus.functionalities.increment_days as id
 import coronavirus.custom_errors as ce
 
 (os.path.abspath(__file__))#funcion de os para usar el path absoluto. Sirve para que la fila funcione en todos sitios.
