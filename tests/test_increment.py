@@ -1,25 +1,22 @@
-import pytest
-import os
 import pandas as pd
-import coronavirus.plot_country as pc
 import coronavirus.functionalities.increment_days as id
 
-absolute_path_every_machine = os.path.abspath(__file__)
-directory_path = os.path.dirname(absolute_path_every_machine)
 
+CSV = "https://covid.ourworldindata.org/data/ecdc/full_data.csv"
 
-ID = "full_data.csv"
-csv = "https://covid.ourworldindata.org/data/ecdc/{0}".format(ID)
-df_coronavirus = pd.read_csv(csv)
+df_coronavirus = pd.read_csv(CSV)
 condition = df_coronavirus["location"] == "Spain"
 df_cond = df_coronavirus[condition]
-tail_csv = df_cond.tail(30)
+head_csv = df_cond.head(42)
+print(head_csv)
 
-def increment_test(tail_csv):
-    field = "total_cases"
-
-    incremental = id.pl_increment_cases(tail_csv, field)
+field = "total_cases"
 
 
+def test_increment(csv=head_csv):
+    increment_test_result = id.pl_increment_cases(csv, field=field)
+    assert increment_test_result[-1] == 1
 
+#increment = increment_test(head_csv)
+#print(increment)
 
