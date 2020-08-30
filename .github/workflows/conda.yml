@@ -1,4 +1,4 @@
-name: ImageFormatter From Conda
+name: Coronavirus From Conda
 on: [push]
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
         echo ::add-path::$CONDA/condabin
     - name: Install via Conda
       run: |
-        sudo conda install -c stkobsar7 image_formatter
+        sudo conda install -c stkobsar7 coronavirus
         sudo conda install pytest
         sudo python -m pip install rawpy
     - name: Test with pytest
