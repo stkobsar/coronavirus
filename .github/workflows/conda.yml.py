@@ -1,0 +1,26 @@
+name: ImageFormatter From Conda
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Include $CONDA in $PATH
+      run: |
+        echo ::add-path::$CONDA/bin
+        echo ::add-path::$CONDA/condabin
+    - name: Install via Conda
+      run: |
+        sudo conda install -c stkobsar7 image_formatter
+        sudo conda install pytest
+        sudo python -m pip install rawpy
+    - name: Test with pytest
+      run:
+        python -m pytest tests
