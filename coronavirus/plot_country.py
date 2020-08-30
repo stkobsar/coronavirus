@@ -32,7 +32,7 @@ def pl_country_cases(country, csv, field, incremental=False, relative=False):
     if incremental:
         list_cases = id.pl_increment_cases(df_filtered_na, field)
     if relative:
-        list_cases = rel.relative_population(df_filtered_na)
+        list_cases = rel.relative_population(df_filtered_na, field)
     else:
         list_cases = df_filtered_na[field].values
 
