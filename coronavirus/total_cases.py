@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 def pl_total_cases(csv, countries_user, field, incremental, relative):
     for country in countries_user:
-        plot_output = pl.pl_country_cases(country, csv, field, savefig=False, incremental=incremental, relative=relative)
+        plot_output = pl.pl_country_cases(country, csv, field, incremental=incremental, relative=relative)
 
     #Overwrite previous axis and title name!
     plt.legend(countries_user)

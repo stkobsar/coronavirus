@@ -14,7 +14,7 @@ CSV = "https://covid.ourworldindata.org/data/ecdc/{0}".format(ID)
 
 def coronavirus_data(field, countries, incremental, relative):
     plot_total_cases = tot.pl_total_cases(CSV, countries, field=field, incremental=incremental, relative=relative)
-
+    return plot_total_cases
 
 def parse_args(parser):
     parser.add_argument('-cts', '--countries', nargs="+", help="List of countries. i.e. --countries spain italy france", default=[])
