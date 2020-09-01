@@ -6,7 +6,6 @@ import coronavirus.functionalities.increment_days as id
 import coronavirus.functionalities.relative_to_population as rp
 
 
-
 def pl_country_cases(country, csv, field, savefig=True, incremental=False, relative=False):
     """
     Description: Plot country cases by days since pandemic started
@@ -17,14 +16,14 @@ def pl_country_cases(country, csv, field, savefig=True, incremental=False, relat
     :return: output plot
     """
     df_coronavirus = pd.read_csv(csv)
-    condition = df_coronavirus["location"].str.lower() == country.lower() #str.lower() retrieve en minuscula. Esto permite que le usuario pase spain como quiera
+    condition = df_coronavirus[
+                    "location"].str.lower() == country.lower()  # str.lower() retrieve en minuscula. Esto permite que le usuario pase spain como quiera
     df_filtered = df_coronavirus[condition]
 
     list_of_countries = df_coronavirus["location"].unique()
     list_of_fields = []
     for col_name in df_filtered.columns:
         list_of_fields.append(col_name)
-
 
     ce.check_error_field(field, list_of_fields)
     ce.check_error_country(df_filtered, country, list_of_countries)
@@ -38,9 +37,7 @@ def pl_country_cases(country, csv, field, savefig=True, incremental=False, relat
     else:
         list_cases = df_filtered_na[field].values
 
-
     list_dates = range(len(list_cases))
-
 
     ### Plot ###
 

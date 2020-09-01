@@ -1,17 +1,15 @@
 import pandas as pd
+import math
 
-def relative_population(absolute_values):
+
+
+def relative_population(list_cases):
     CSV_POPULATION = "https://covid.ourworldindata.org/data/ecdc/locations.csv"
-
     population_df = pd.read_csv(CSV_POPULATION)
+
     population_list = population_df["population"].unique()
-     ### Dividir valores de las listas entre si y meterlo en una nueva lista, que será list_cases para plotar.
+    pop_abs = [1 if math.isnan(x) else x for x in population_list]
 
-    #CSV_POPULATION --> population
-    #relative_values = num_cases / population
-    #return realtive_values
-
-
-CSV_POPULATION = "https://covid.ourworldindata.org/data/ecdc/locations.csv"
-
-relative_population(CSV_POPULATION)
+    #print(list_cases)
+    #pop_rel = [x / y for x, y in zip(list_cases, pop_abs)]
+    #print(pop_rel)

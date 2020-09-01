@@ -8,12 +8,11 @@ import coronavirus.custom_errors as ce
 (os.path.abspath(__file__))#funcion de os para usar el path absoluto. Sirve para que la fila funcione en todos sitios.
 ROOT_FOLDER = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))#os.path.dirname sirve para ir un dir hacia atras. Se pone 3 veces para ir 3 para atrás.
 
-ID = "full_data.csv"
-CSV = "https://covid.ourworldindata.org/data/ecdc/{0}".format(ID)
+CSV_FULL_DATA = "https://covid.ourworldindata.org/data/ecdc/full_data.csv"
 
 
 def coronavirus_data(field, countries, incremental, relative):
-    plot_total_cases = tot.pl_total_cases(CSV, countries, field=field, incremental=incremental, relative=relative)
+    plot_total_cases = tot.pl_total_cases(CSV_FULL_DATA, countries, field=field, incremental=incremental, relative=relative)
 
 
 def parse_args(parser):
