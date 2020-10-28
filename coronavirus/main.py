@@ -10,6 +10,7 @@ ROOT_FOLDER = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__
 
 CSV_FULL_DATA = "https://covid.ourworldindata.org/data/ecdc/full_data.csv"
 
+#new data set "https://covid.ourworldindata.org/data/owid-covid-data.csv"
 
 def coronavirus_data(field, countries, incremental, relative):
     plot_total_cases = tot.pl_total_cases(CSV_FULL_DATA, countries, field=field, incremental=incremental, relative=relative)
