@@ -16,19 +16,23 @@ def pl_country_cases(country, csv, field, savefig=True, incremental=False, relat
     :return: output plot
     """
     df_coronavirus = pd.read_csv(csv)
-    condition = df_coronavirus[
-                    "location"].str.lower() == country.lower()  # str.lower() retrieve en minuscula. Esto permite que le usuario pase spain como quiera
+    condition = df_coronavirus["location"].str.lower() == country.lower()  # str.lower() retrieve en minuscula. Esto permite que le usuario pase spain como quiera
     df_filtered = df_coronavirus[condition]
 
     list_of_countries = df_coronavirus["location"].unique()
     list_of_fields = []
+
+
     for col_name in df_filtered.columns:
         list_of_fields.append(col_name)
 
     ce.check_error_field(field, list_of_fields)
     ce.check_error_country(df_filtered, country, list_of_countries)
 
+
     df_filtered_na = df_filtered.fillna(0)
+    #df_filtered_na = df_filtered_na.total_tests.fillna(value=0, inplace=True)  # This fills all the null values in the columns with 0.
+
 
     if incremental:
         list_cases = id.pl_increment_cases(df_filtered_na, field)

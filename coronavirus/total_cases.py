@@ -19,9 +19,12 @@ def pl_total_cases(csv, countries_user, field, incremental, relative):
 
     plt.xlabel("Days since COVID-19 start spreading")
     plt.ylabel(f"COVID-19 official cases of {field_title}")
-    plt.title(f"COVID-19 data of {field_title} in {countries_plot_title}")
+    plt.title(f"COVID-19 data of {field_title} in {countries_plot_title}")git
 
     dir = create_dir_default(curr_date_custom)
+    output = f"{field_custom}_{curr_date_custom}_{countries_user_outputname}.png"
+    output = os.path.join(dir, output)
+    plt.savefig(output)
 
 
 def create_dir_default(date):
