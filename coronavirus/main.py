@@ -28,5 +28,5 @@ if __name__ == "__main__":
     parse_args(parser)
     args = parser.parse_args()
     ###########
-    coronavirus_data(args.field, args.countries, args.incremental, args.relative)
+    coronavirus_data(args.field, args.countries, args.incremental)
 
