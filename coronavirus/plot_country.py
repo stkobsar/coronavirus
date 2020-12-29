@@ -3,10 +3,9 @@ import pandas as pd
 import os
 import coronavirus.custom_errors as ce
 import coronavirus.functionalities.increment_days as id
-import coronavirus.functionalities.relative_to_population as rp
 
 
-def pl_country_cases(country, csv, field, savefig=True, incremental=False, relative=False):
+def pl_country_cases(country, csv, field, savefig=True, incremental=False):
     """
     Description: Plot country cases by days since pandemic started
     :param country: country entered by the user
