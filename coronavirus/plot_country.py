@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import os
+import io
+import requests
 import coronavirus.custom_errors as ce
 import coronavirus.functionalities.increment_days as id
 
@@ -14,7 +15,11 @@ def pl_country_cases(country, csv, field, savefig=True, incremental=False):
     :param savefig: Save plot created trough data
     :return: output plot
     """
+
     df_coronavirus = pd.read_csv(csv)
+
+    #df_coronavirus = pd.read_csv(csv)
+
     condition = df_coronavirus["location"].str.lower() == country.lower()  # str.lower() retrieve en minuscula. Esto permite que le usuario pase spain como quiera
     df_filtered = df_coronavirus[condition]
 
@@ -30,13 +35,10 @@ def pl_country_cases(country, csv, field, savefig=True, incremental=False):
 
 
     df_filtered_na = df_filtered.fillna(0)
-    #df_filtered_na = df_filtered_na.total_tests.fillna(value=0, inplace=True)  # This fills all the null values in the columns with 0.
-
 
     if incremental:
         list_cases = id.pl_increment_cases(df_filtered_na, field)
-    elif relative:
-        list_cases = rp.relative_population(df_filtered_na[field].values)
+
     else:
         list_cases = df_filtered_na[field].values
 
