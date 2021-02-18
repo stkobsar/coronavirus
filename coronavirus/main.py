@@ -6,7 +6,6 @@ import coronavirus.histograms as hs
 import coronavirus.qq_plot as qp
 import functionalities.mortality_comparison as mc
 import functionalities.plot_maps as mp
-from urllib.request import Request, urlopen
 
 
 (os.path.abspath(__file__))#funcion de os para usar el path absoluto. Sirve para que la fila funcione en todos sitios.
@@ -16,7 +15,8 @@ ROOT_FOLDER = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__
 CSV_FULL_DATA = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"
 
 
-filedir = os.path.join(ROOT_FOLDER, "/data")
+filedir = os.path.join("/Users/Stephi/Documents/programming/REPOSITORIES", "coronavirus/data")
+print(filedir)
 filename = "excess_mortality.csv"
 csv_excess_mortality = os.path.join(filedir, filename)
 
